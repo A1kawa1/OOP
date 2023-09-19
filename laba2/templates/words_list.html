@@ -1,0 +1,28 @@
+{% extends "main.html" %}
+{% block content %}
+<a href={% url "main:index" %}>
+    <button type="submit" class="btn btn-primary">
+        Главная
+    </button>
+</a>
+<a href={% url "main:download_txt" %} download="переводы.txt">
+    <button type="submit" class="btn btn-primary">
+        Скачать словарь
+    </button>
+</a>
+<br>
+<br>
+<table>
+    <tr style="border: 1px solid #000;">
+        <td style="border-right: 1px solid black; text-align: center;"><strong>Слово</strong></td>
+        <td style="border-right: 1px solid black; text-align: center"><strong>Перевод</strong></td>
+    </tr>
+    {% for el in dict %}
+        <tr style="border: 1px solid #000; text-align: center;">
+            <td style="border-right: 1px solid black;"> {{ el.word}} </td>
+            <td style="border-right: 1px solid black;"> {{ el.translation }} </td>
+        </tr>
+    {% endfor %}
+</table>
+
+{% endblock content %}

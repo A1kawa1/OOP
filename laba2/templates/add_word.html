@@ -1,0 +1,24 @@
+{% extends "main.html" %}
+{% block content %}
+<a href={% url "main:index" %}>
+    <button type="submit" class="btn btn-primary">
+        Главная
+    </button>
+</a>
+<br>
+<br>
+<form method="post">
+    {% csrf_token %}
+    {% for field in form %}
+        <label>
+        {{ field.label|safe }}
+        </label>
+        {{ field}}
+        <br>
+    {% endfor %}
+    {{ form.non_field_errors }}
+    <button type="submit" class="btn btn-primary">
+        Создать перевод
+    </button>
+</form>
+{% endblock content %}

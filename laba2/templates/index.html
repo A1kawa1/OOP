@@ -1,0 +1,15 @@
+{% extends "main.html" %}
+{% block content %}
+
+<h1>Это главная</h1>
+<a href={% url "main:words_list" %}>
+    <button type="submit" class="btn btn-primary">
+        Переводы
+    </button>
+</a>
+<a href={% url "main:add_word" %}>
+    <button type="submit" class="btn btn-primary">
+        Добавить перевод
+    </button>
+</a>
+{% endblock content %}
