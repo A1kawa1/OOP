@@ -7,12 +7,6 @@ from main.models import Dictionary
 from main.forms import DictionaryForm
 
 
-@dataclass
-class Pair:
-    word: str
-    translation: str
-
-
 def index(request):
     return render(
         request,
@@ -22,15 +16,11 @@ def index(request):
 
 def words_list(request):
     data = Dictionary.objects.all()
-    dict_data = [
-        Pair(word=el.word, translation=el.translation)
-        for el in data
-    ]
     return render(
         request,
         'words_list.html',
         {
-            'dict': dict_data
+            'dict': data
         }
     )
 
