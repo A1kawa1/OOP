@@ -7,8 +7,7 @@ from uuid import uuid4
 
 from api.models import Token
 from api.serializers import GoodSerializer
-from api.permissions import validate_token
-from api.exceptions import NoToken
+from api.permissions import TokenPermission
 from goods.models import Good
 
 
@@ -26,16 +25,9 @@ def get_token(request):
 
 
 class GoodPostList(viewsets.GenericViewSet):
+    queryset = Good.objects.all()
     serializer_class = GoodSerializer
-
-    def get_queryset(self):
-        token = self.request.query_params.get('token')
-        if token is None:
-            raise NoToken
-
-        validate_token(token)
-
-        return Good.objects.all()
+    permission_classes = (TokenPermission,)
 
 
 class GoodList(mixins.ListModelMixin, GoodPostList):
