@@ -16,9 +16,7 @@ def login(request):
         password = serializer.data.get('password')
         if not authenticate_user(username, password):
             return Response(
-                {
-                    'detail': 'invalid credentials'
-                },
+                {'detail': 'invalid credentials'},
                 status=status.HTTP_401_UNAUTHORIZED
             )
 

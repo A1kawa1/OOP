@@ -19,9 +19,7 @@ def login(request):
         role = serializer.data.get('role')
         if not authenticate_user(username, password):
             return Response(
-                {
-                    'detail': 'invalid credentials'
-                },
+                {'detail': 'invalid credentials'},
                 status=status.HTTP_401_UNAUTHORIZED
             )
 
