@@ -22,7 +22,7 @@ class ProtectedResourcePermission(permissions.BasePermission):
             if not all(list(map(lambda el: el in data, ['username', 'password', 'start_date']))):
                 raise InvalidToken
 
-            if (datetime.strptime(data.get('start_date'), '%Y-%m-%d') - datetime.now()).days > 30:
+            if (datetime.now() - datetime.strptime(data.get('start_date'), '%Y-%m-%d')).days > 30:
                 raise InvalidToken
 
             return True
